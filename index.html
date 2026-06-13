@@ -1,14 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>VOD TEST</title>
+  <title>VOD Cinema</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:sans-serif;
+      background:#0b0b0b;
+      color:white;
+    }
+
+    header{
+      padding:20px;
+      text-align:center;
+      font-size:24px;
+      background:#111;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+      gap:15px;
+      padding:20px;
+    }
+
+    .card{
+      background:#1c1c1c;
+      padding:10px;
+      border-radius:10px;
+      text-align:center;
+      cursor:pointer;
+      transition:0.3s;
+      text-decoration:none;
+      color:white;
+    }
+
+    .card:hover{
+      transform:scale(1.05);
+      background:#333;
+    }
+  </style>
 </head>
-<body style="background:black;color:white;text-align:center;">
 
-<h1>🎬 VOD TEST OK</h1>
+<body>
 
-<a href="movie.html?id=sintel">Sintel</a>
+<header>🎬 VOD Cinema</header>
+
+<div class="grid" id="movies"></div>
+
+<script>
+fetch("data/movies.json")
+.then(res => res.json())
+.then(data => {
+
+  const container = document.getElementById("movies");
+
+  data.forEach(movie => {
+
+    const card = document.createElement("a");
+    card.className = "card";
+    card.href = "movie.html?id=" + movie.id;
+
+    card.innerHTML = `
+      <h3>${movie.title}</h3>
+      <p style="font-size:12px;color:#aaa">${movie.desc}</p>
+    `;
+
+    container.appendChild(card);
+  });
+
+});
+</script>
 
 </body>
 </html>
