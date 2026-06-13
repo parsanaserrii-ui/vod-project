@@ -2,14 +2,14 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>Movie</title>
+  <title>Movie Player</title>
 </head>
 
 <body style="background:black;color:white;text-align:center;">
 
 <h1 id="title">Loading...</h1>
 
-<video id="player" controls width="80%"></video>
+<video id="player" controls width="80%" style="margin-top:20px"></video>
 
 <script>
 const params = new URLSearchParams(window.location.search);
@@ -19,6 +19,10 @@ const movies = {
   sintel: {
     title: "Sintel",
     video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+  },
+  bunny: {
+    title: "Big Buck Bunny",
+    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
   }
 };
 
@@ -26,8 +30,14 @@ if (movies[id]) {
   document.getElementById("title").innerText = movies[id].title;
 
   const video = document.getElementById("player");
-  video.src = movies[id].video;
-}
+
+  // مهم: این روش مطمئن‌تره از src مستقیم
+  video.innerHTML = `
+    <source src="${movies[id].video}" type="video/mp4">
+  `;
+
+  video.load();
+} 
 else {
   document.getElementById("title").innerText = "Movie not found";
 }
