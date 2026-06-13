@@ -2,58 +2,35 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>Movie Player</title>
-
-  <style>
-    body {
-      background: #0b0b0b;
-      color: white;
-      font-family: sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-
-    video {
-      width: 90%;
-      max-width: 800px;
-      border-radius: 10px;
-    }
-  </style>
+  <title>Movie</title>
 </head>
 
-<body>
+<body style="background:black;color:white;text-align:center;">
 
 <h1 id="title">Loading...</h1>
 
-<video id="player" controls>
-  <source id="video-source" src="">
-</video>
-
-<p id="description"></p>
+<video id="player" controls width="80%"></video>
 
 <script>
 const params = new URLSearchParams(window.location.search);
-const movieId = params.get("id");
+const id = params.get("id");
 
-fetch("data/movies.json")
-  .then(res => res.json())
-  .then(data => {
+const movies = {
+  sintel: {
+    title: "Sintel",
+    video: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
+  }
+};
 
-    const movie = data.find(m => m.id === movieId);
+if (movies[id]) {
+  document.getElementById("title").innerText = movies[id].title;
 
-    if (!movie) {
-      document.getElementById("title").innerText = "Movie not found";
-      return;
-    }
-
-    document.getElementById("title").innerText = movie.title;
-    document.getElementById("description").innerText = movie.desc;
-
-    const video = document.getElementById("video-source");
-    video.src = movie.video;
-
-    document.getElementById("player").load();
-  });
+  const video = document.getElementById("player");
+  video.src = movies[id].video;
+}
+else {
+  document.getElementById("title").innerText = "Movie not found";
+}
 </script>
 
 </body>
