@@ -3,3 +3,11 @@ body {
   color: white;
   font-family: sans-serif;
 }
+.card h3{
+  margin:10px 0;
+}
+
+.card p{
+  font-size:12px;
+  opacity:0.7;
+}
