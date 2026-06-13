@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <title>VOD Cinema</title>
+<meta charset="UTF-8">
+<title>VOD Cinema</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:sans-serif;
-      background:#0b0b0b;
-      color:white;
-    }
+<style>
+body{
+  margin:0;
+  background:#0b0b0b;
+  color:white;
+  font-family:sans-serif;
+}
 
-    header{
-      padding:20px;
-      text-align:center;
-      font-size:24px;
-      background:#111;
-    }
+header{
+  padding:20px;
+  text-align:center;
+  background:#111;
+  font-size:22px;
+  font-weight:bold;
+}
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-      gap:15px;
-      padding:20px;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
+  padding:20px;
+}
 
-    .card{
-      background:#1c1c1c;
-      padding:10px;
-      border-radius:10px;
-      text-align:center;
-      cursor:pointer;
-      transition:0.3s;
-      text-decoration:none;
-      color:white;
-    }
+.card{
+  background:#1c1c1c;
+  border-radius:12px;
+  padding:10px;
+  text-align:center;
+  text-decoration:none;
+  color:white;
+  transition:0.3s;
+}
 
-    .card:hover{
-      transform:scale(1.05);
-      background:#333;
-    }
-  </style>
+.card:hover{
+  transform:scale(1.05);
+  background:#333;
+}
+</style>
+
 </head>
 
 <body>
@@ -52,20 +53,20 @@
 
 <script>
 fetch("data/movies.json")
-.then(res => res.json())
-.then(data => {
+.then(res=>res.json())
+.then(data=>{
 
-  const container = document.getElementById("movies");
+  const container=document.getElementById("movies");
 
-  data.forEach(movie => {
+  data.forEach(m=>{
 
-    const card = document.createElement("a");
-    card.className = "card";
-    card.href = "movie.html?id=" + movie.id;
+    const card=document.createElement("a");
+    card.className="card";
+    card.href="movie.html?id="+m.id;
 
-    card.innerHTML = `
-      <h3>${movie.title}</h3>
-      <p style="font-size:12px;color:#aaa">${movie.desc}</p>
+    card.innerHTML=`
+      <h3>${m.title}</h3>
+      <p style="color:#aaa;font-size:12px">${m.desc}</p>
     `;
 
     container.appendChild(card);
