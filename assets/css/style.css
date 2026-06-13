@@ -92,3 +92,17 @@ nav a:hover{
     color:#aaa;
     font-size:13px;
 }
+.watch-btn{
+    display:inline-block;
+    margin-top:20px;
+    background:#ff3d00;
+    color:white;
+    text-decoration:none;
+    padding:12px 24px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+.watch-btn:hover{
+    background:#ff5722;
+}
