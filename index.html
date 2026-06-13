@@ -145,7 +145,10 @@ card.className = "card";
 card.href = "movie.html?id=" + movie.id;
 
 card.innerHTML = `
+<img src="${movie.poster}" class="poster">
+
 <h3>${movie.title}</h3>
+
 <p>${movie.desc}</p>
 `;
 
