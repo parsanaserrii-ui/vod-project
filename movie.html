@@ -2,77 +2,55 @@
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>تماشای فیلم | US TV</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet">
+  <title>Movie Player</title>
 
   <style>
     body{
       margin:0;
-      font-family:'Vazirmatn', sans-serif;
-      background:#0d0d0d;
-      color:#fff;
-    }
-    header{
-      background:#111;
-      padding:15px;
+      font-family:sans-serif;
+      background:#0b0b0b;
+      color:white;
       text-align:center;
-      font-size:22px;
-      font-weight:700;
     }
-    .container{
-      max-width:900px;
-      margin:auto;
-      padding:20px;
-    }
+
     video{
-      width:100%;
-      border-radius:12px;
-      background:#000;
-      margin-bottom:20px;
-    }
-    h1{
-      font-size:22px;
-      margin-bottom:10px;
-    }
-    .info{
-      color:#ccc;
-      font-size:14px;
-      margin-bottom:20px;
-    }
-    a{
-      color:#ff3d00;
-      text-decoration:none;
+      width:90%;
+      max-width:800px;
+      margin-top:20px;
+      border-radius:10px;
     }
   </style>
 </head>
 
 <body>
 
-<header>🎬 US TV</header>
+<h1 id="title">Loading...</h1>
 
-<div class="container">
+<video controls id="player"></video>
 
-  <video width="100%" height="500" controls autoplay muted playsinline>
-  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-  مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
-</video>
+<p id="desc"></p>
 
-  <h1>Big Buck Bunny</h1>
-  <div class="info">
-    انیمیشن | خانوادگی | ۱۰ دقیقه
-  </div>
+<script>
+const id = new URLSearchParams(window.location.search).get("id");
 
-  <p>
-    یک انیمیشن کوتاه و جذاب درباره یک خرگوش بامزه که با دشمنانش روبه‌رو می‌شود.
-  </p>
+fetch("data/movies.json")
+.then(res => res.json())
+.then(data => {
 
-  <p>
-    <a href="index.html">← بازگشت به صفحه اصلی</a>
-  </p>
+  const movie = data.find(m => m.id === id);
 
-</div>
+  if(!movie){
+    document.getElementById("title").innerText = "Movie not found";
+    return;
+  }
+
+  document.getElementById("title").innerText = movie.title;
+  document.getElementById("desc").innerText = movie.desc;
+
+  document.getElementById("player").src = movie.video;
+
+});
+</script>
 
 </body>
 </html>
