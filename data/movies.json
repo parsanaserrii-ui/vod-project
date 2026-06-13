@@ -3,12 +3,14 @@
     "id": "bunny",
     "title": "Big Buck Bunny",
     "desc": "انیمیشن کوتاه بامزه",
+    "poster": "assets/images/bunny.jpg",
     "video": "https://www.w3schools.com/html/mov_bbb.mp4"
   },
   {
     "id": "sintel",
     "title": "Sintel",
     "desc": "انیمیشن ماجراجویی",
+    "poster": "assets/images/sintel.jpg",
     "video": "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4"
   }
 ]
