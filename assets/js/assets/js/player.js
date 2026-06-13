@@ -1,17 +1,15 @@
-const params = new URLSearchParams(window.location.search);
-const movieId = params.get("id");
+const search=document.getElementById("search");
 
-fetch("data/movies.json")
-  .then(res => res.json())
-  .then(data => {
+search.addEventListener("input",function(){
 
-    const movie = data.find(m => m.id === movieId);
+  const value=this.value.toLowerCase();
 
-    if (!movie) return;
+  document.querySelectorAll(".card").forEach(card=>{
 
-    document.getElementById("title").innerText = movie.title;
-    document.getElementById("description").innerText = movie.desc;
-    document.getElementById("video-source").src = movie.video;
+    const text=card.innerText.toLowerCase();
 
-    document.getElementById("player").load();
+    card.style.display=text.includes(value)?"block":"none";
+
   });
+
+});
